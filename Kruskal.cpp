@@ -22,14 +22,13 @@ bool operator<(edgeStructure lhs,edgeStructure rhs)
 ll parent[mx];
 ll rankParent[mx];
 
-vector<edgeStructure>edgeVector;
+vector<edgeStructure>edgeVector,output;
 
 
 void initializeSet(ll n)
 {
     for(ll i=0;i<=n;i++){
         parent[i]=i;
-        rankParent[i]=0;
     }
 }
 
@@ -41,24 +40,6 @@ ll findParent(ll x)
         return x;
 }
 
-ll unionSet(ll x, ll y)
-{
-    ll px=findParent(x);
-    ll py=findParent(y);
-
-    if(rankParent[px]<rankParent[y]){
-        parent[px]=py;
-    }
-    else if(rankParent[px]>rankParent[y]){
-        parent[py]=px;
-    }
-    else{
-        parent[py]=px;
-        rankParent[px]++;
-    }
-}
-
-
 ll kruskal(ll n)
 {
     initializeSet(n);
@@ -68,9 +49,12 @@ ll kruskal(ll n)
     ll ans=0;
 
     for(ll i=0;i<sz;i++){
-        if(findParent(edgeVector[i].u)!=findParent(edgeVector[i].v))
+        int uPr = findParent(edgeVector[i].u);
+        int vPr = findParent(edgeVector[i].v);
+        if(uPr != vPr)
         {
-            unionSet(parent[edgeVector[i].u],parent[edgeVector[i].v]);
+            output.pb(edgeVector[i]);
+            parent[uPr] = vPr;
             ans+=edgeVector[i].w;
         }
     }
@@ -80,14 +64,32 @@ ll kruskal(ll n)
 
 int main()
 {
-    ll vertex,edges;
+    ll vertex,edges,i;
     cin>>vertex>>edges;
 
-    for(ll i=0;i<edges;i++){
+    for( i=0;i<edges;i++){
         edgeStructure e;
         cin>>e.u>>e.v>>e.w;
         edgeVector.pb(e);
     }
     cout<<"MST Cost = "<<kruskal(vertex)<<endl;
+    for( i = 0 ;i < output.size() ; i++)
+    {
+        cout<<output[i].u<<" "<<output[i].v<<" "<<output[i].w<<endl;
+    }
     return 0;
 }
+
+/*
+4 5
+0 1 10
+0 2 6
+0 3 5
+1 3 15
+2 3 4
+ans:
+19
+2 3 4
+0 3 5
+0 1 10
+*/
