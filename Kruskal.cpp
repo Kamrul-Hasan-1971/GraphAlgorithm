@@ -93,3 +93,4 @@ ans:
 0 3 5
 0 1 10
 */
+//https://medium.com/প্রোগ্রামিং-পাতা/kruskals-algorithm-minimum-spanning-tree-74fda4b98638
