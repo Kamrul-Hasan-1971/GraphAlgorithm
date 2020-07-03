@@ -33,7 +33,7 @@ int main()
     {
         cin >> u >> v ;
         v1[u].push_back(v);
-        v2[v].push_back(u);
+        //v2[v].push_back(u);
     }
     if(SCC()) cout<<"YES"<<endl;
     else cout<<"NO"<<endl;
