@@ -39,3 +39,4 @@ int main()
     else cout<<"NO"<<endl;
     return 0;
 }
+// If graph is directed no need to run dfs2.
