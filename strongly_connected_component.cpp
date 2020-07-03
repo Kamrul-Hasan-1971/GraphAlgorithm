@@ -20,9 +20,9 @@ ll SCC()
     for(ll i=1;i<=node;i++) vis[i]=0;
     dfs1(1);
     for(ll i=1;i<=node;i++) if(!vis[i]) return 0;
-    for(ll i=1;i<=node;i++) vis[i]=0;
-    dfs2(1);
-    for(ll i=1;i<=node;i++) if(!vis[i]) return 0;
+    for(ll i=1;i<=node;i++) vis[i]=0;//if undirected
+    dfs2(1);//if undirected
+    for(ll i=1;i<=node;i++) if(!vis[i]) return 0; //if undirected
     return 1;
 }
 int main()
@@ -33,10 +33,10 @@ int main()
     {
         cin >> u >> v ;
         v1[u].push_back(v);
-        //v2[v].push_back(u);
+        v2[v].push_back(u);//if undirected
     }
     if(SCC()) cout<<"YES"<<endl;
     else cout<<"NO"<<endl;
     return 0;
 }
-// If graph is directed no need to run dfs2.
+
