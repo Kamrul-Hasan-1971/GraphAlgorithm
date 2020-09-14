@@ -15,8 +15,8 @@ vector<pii>v2;
 ll cnt,start[100005],finish[100005];
 
 ll a,under[100005];
-
-/*void dfs(ll u,ll p)
+// one...
+void dfs(ll u,ll p)
 {
     under[u]=1;
     ll ret =0;
@@ -30,8 +30,8 @@ ll a,under[100005];
     }
     ret=max(ret,a-under[u]);
     v2.pb({ret,u});
-}*/
-
+}
+// two....
 void dfs(ll u,ll p)
 {
     start[u]=++cnt;
