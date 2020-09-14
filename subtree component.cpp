@@ -14,6 +14,24 @@ vector<ll>v1[100005];
 vector<pii>v2;
 ll cnt,start[100005],finish[100005];
 
+ll a,under[100005];
+
+/*void dfs(ll u,ll p)
+{
+    under[u]=1;
+    ll ret =0;
+    for( auto v: v1[u]){
+        if(v!=p)
+        {
+            dfs(v,u);
+            under[u]+=under[v];
+            ret=max(under[v],ret);
+        }
+    }
+    ret=max(ret,a-under[u]);
+    v2.pb({ret,u});
+}*/
+
 void dfs(ll u,ll p)
 {
     start[u]=++cnt;
@@ -24,7 +42,7 @@ void dfs(ll u,ll p)
 int main()
 {
     CIN;
-    ll  a,b,c,d,e,f=0,i,T;
+    ll  b,c,d,e,f=0,i,T;
     cin>> T ;
     while(T--)
     {
