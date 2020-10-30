@@ -1,3 +1,5 @@
+//binary tree
+
 int traverse(TreeNode* r, int &moves) {
   if (r == nullptr) return 0;
   int left = traverse(r->left, moves), right = traverse(r->right, moves);
