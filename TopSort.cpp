@@ -1,4 +1,6 @@
 //O(Nodes+Edges)
+// topSort is only possible,when graph is a DAG.
+//A DAG G has at least one vertex with in-degree 0 and one vertex with out-degree 0.
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -36,7 +38,7 @@ int main()
     for( i =1 ; i<= edges ; i++)
     {
         cin >> u >> v ;
-        v1[u].push_back(v);
+        v1[u].push_back(v);//v deneds on u
     }
     topsort(node);
     return 0 ;
