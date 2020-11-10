@@ -38,7 +38,7 @@ int main()
     for( i =1 ; i<= edges ; i++)
     {
         cin >> u >> v ;
-        v1[u].push_back(v);//v deneds on u
+        v1[u].push_back(v);//u comes first before v in ordering;
     }
     topsort(node);
     return 0 ;
