@@ -86,7 +86,7 @@ int main()
     else
     {
         vector<int>path;
-        int p=n;
+        int p=des;
 
         while(p != -1)
         {
