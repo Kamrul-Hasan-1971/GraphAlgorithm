@@ -1,3 +1,8 @@
+/*A directed graph is strongly connected if there is a path between all pairs of vertices. A 
+strongly connected component of a directed graph is a maximal strongly connected subgraph*/
+/* full graph strongly connected component naki check korte bolley just normal+reverse graph 
+traverse kore shob node visit hocchey naki chack korle e hobey.*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #define       zero(a)              memset(a,0,sizeof a)
@@ -50,7 +55,6 @@ int main()
     }
     return 0;
 }
-
 
 /*
 7 8
