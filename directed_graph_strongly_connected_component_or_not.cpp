@@ -22,9 +22,8 @@ ll SCC()
     for(ll i=1;i<=node;i++) vis[i]=0;
     dfs1(1);
     for(ll i=1;i<=node;i++) if(!vis[i]) return 0;
-    for(ll i=1;i<=node;i++) vis[i]=0;//if undirected
-    dfs2(1);//if undirected
-    for(ll i=1;i<=node;i++) if(!vis[i]) return 0; //if undirected
+    dfs2(1);
+    for(ll i=1;i<=node;i++) if(!vis[i]) return 0; 
     return 1;
 }
 int main()
