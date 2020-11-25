@@ -5,81 +5,54 @@ using namespace std;
 #define           ll               long long int
 #define           pb               push_back
 #define           mx               100
-
-
-struct edgeStructure
+struct data
 {
-    ll u;
-    ll v;
-    ll w;
-};
-
-bool operator<(edgeStructure lhs,edgeStructure rhs)
-{
-    return lhs.w<rhs.w;
-}
-
-ll parent[mx];
-ll rankParent[mx];
-
-vector<edgeStructure>edgeVector,output;
-
-
-void initializeSet(ll n)
-{
-    for(ll i=0;i<=n;i++){
-        parent[i]=i;
+    ll u,v,w;
+    bool operator<(const data &other)
+    {
+        return w<other.w;
     }
-}
-
+};
+ll parent[mx];
+vector<data>v1,output;
 ll findParent(ll x)
 {
-    if(x!=parent[x])
-        return parent[x]=findParent(parent[x]);
-    else
-        return x;
+    if(x!=parent[x]) return parent[x]=findParent(parent[x]);
+    return x;
 }
-
 ll kruskal(ll n)
 {
-    initializeSet(n);
-    sort(edgeVector.begin(),edgeVector.end());
-
-    ll sz=edgeVector.size();
-    ll ans=0;
-
-    for(ll i=0;i<sz;i++){
-        int uPr = findParent(edgeVector[i].u);
-        int vPr = findParent(edgeVector[i].v);
+    for(ll i=0; i<=n; i++) parent[i]=i;
+    sort(v1.begin(),v1.end());
+    ll sz=v1.size(),ans=0;
+    for(ll i=0; i<sz; i++)
+    {
+        int uPr = findParent(v1[i].u);
+        int vPr = findParent(v1[i].v);
         if(uPr != vPr)
         {
-            output.pb(edgeVector[i]);
+            output.pb(v1[i]);
             parent[uPr] = vPr;
-            ans+=edgeVector[i].w;
+            ans+=v1[i].w;
         }
     }
     return ans;
 }
-
-
 int main()
 {
-    ll vertex,edges,i;
-    cin>>vertex>>edges;
-
-    for( i=0;i<edges;i++){
-        edgeStructure e;
-        cin>>e.u>>e.v>>e.w;
-        edgeVector.pb(e);
-    }
-    cout<<"MST Cost = "<<kruskal(vertex)<<endl;
-    for( i = 0 ;i < output.size() ; i++)
+    ll node,edges,i;
+    cin>>node>>edges;
+    for( i=0; i<edges; i++)
     {
-        cout<<output[i].u<<" "<<output[i].v<<" "<<output[i].w<<endl;
+        data e;
+        cin>>e.u>>e.v>>e.w;
+        v1.pb(e);
     }
+    cout<<"MST Cost = "<<kruskal(node)<<endl;
+    for( i = 0 ; i < output.size() ; i++)
+        cout<<output[i].u<<" "<<output[i].v<<" "<<output[i].w<<endl;
     return 0;
 }
-
 /*
 4 5
 0 1 10
@@ -93,4 +66,3 @@ ans:
 0 3 5
 0 1 10
 */
-//https://medium.com/প্রোগ্রামিং-পাতা/kruskals-algorithm-minimum-spanning-tree-74fda4b98638
