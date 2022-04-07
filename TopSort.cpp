@@ -9,12 +9,12 @@ using namespace std;
 vector<ll>v1[10005];
 void topsort(ll node)
 {
-    ll i ,cnt=0,indegree[node+2]={0};
+    ll i ,cnt=0,dependent_Counter[node+2]={0};
     for( i = 1 ; i<= node ; i++ )
-        for( auto v: v1[i]) indegree[v]++;
+        for( auto v: v1[i]) dependent_Counter[v]++;
     queue<ll>qu;
     for( i = 1 ; i<= node ; i++)
-        if(!indegree[i]) qu.push(i);
+        if(!dependent_Counter[i]) qu.push(i);
     vector<ll>ans;
     while(!qu.empty())
     {
@@ -22,7 +22,7 @@ void topsort(ll node)
         qu.pop();
         ans.push_back(id);
         for( auto v:v1[id]){
-            if(--indegree[v]==0) qu.push(v);
+            if(--dependent_Counter[v]==0) qu.push(v);
         }
         cnt++;
     }
@@ -38,7 +38,7 @@ int main()
     for( i =1 ; i<= edges ; i++)
     {
         cin >> u >> v ;
-        v1[u].push_back(v);//u comes first before v in ordering;
+        v1[u].push_back(v);//v dependent on u
     }
     topsort(node);
     return 0 ;
